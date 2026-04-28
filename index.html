@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>csv2AE - AE Automation Tool</title>
@@ -10,7 +10,6 @@
         
         .header-area { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         h2 { margin: 0; letter-spacing: -0.5px; }
-        .version-label { font-size: 14px; font-weight: normal; color: #888; margin-left: 5px; }
         
         .header-right { display: flex; align-items: center; gap: 15px; }
         .lang-select { padding: 5px 8px; border-radius: 4px; border: 1px solid var(--ae-border); font-size: 13px; background: #fff; cursor: pointer; color: #333; outline: none; }
@@ -54,94 +53,98 @@
 
 <div class="container">
     <div class="header-area">
-        <h2 data-i18n="title">🔄 csv2AE: AE 타임리맵 자동화</h2>
+        <h2 data-i18n="title">🔄 csv2AE: AE Automation</h2>
         <div class="header-right">
             <select id="langSelect" class="lang-select" onchange="changeLanguage()">
+                <option value="en" selected>🇺🇸 English</option>
                 <option value="ko">🇰🇷 한국어</option>
-                <option value="en">🇺🇸 English</option>
                 <option value="ja">🇯🇵 日本語</option>
             </select>
             <div class="fps-area">
-                <span data-i18n="fpsLabel">AE 프레임레이트:</span> <input type="number" id="fps" value="24">
+                <span data-i18n="fpsLabel">AE Framerate:</span> <input type="number" id="fps" value="24">
             </div>
         </div>
     </div>
     
     <div class="notice-box">
-        <strong data-i18n="noticeTitle">📝 타임시트 인식 참고사항</strong><br>
-        <div data-i18n="notice1">• <code>●</code>, <code>○</code> 등의 동화 트랙 라벨은 무시(공백 처리)되어 이전 프레임의 속성을 그대로 유지합니다.</div>
-        <div data-i18n="notice2">• 타 언어 환경에서 깨져 나오는 <code>œ (●)</code>, <code>› (○)</code>, <code>~ (×)</code> 문자들도 원본 기호와 동일하게 자동 복원되어 처리됩니다.</div>
+        <strong data-i18n="noticeTitle">📝 Tool Description & Notes</strong><br>
+        <div data-i18n="notice1">• Converts Clip Studio CSV timesheets to AE Time Remap keyframes.</div>
+        <div data-i18n="notice2">• Recommended: <code>Animation Folder + Cell Name</code> for exported file names.</div>
+        <div data-i18n="notice3">• <code>●</code>, <code>○</code> labels are automatically processed as blanks.</div>
     </div>
     
     <div class="upload-label" id="uploadArea" onclick="document.getElementById('csvFile').click()">
         <div class="upload-icon">📂</div>
-        <div class="upload-text" data-i18n="uploadText">이곳을 클릭하거나 CSV 파일을 드래그하세요</div>
-        <div class="upload-desc" data-i18n="uploadDesc">파일이 인식되면 스크립트 다운로드 버튼이 나타납니다.</div>
+        <div class="upload-text" data-i18n="uploadText">Click here or drag a CSV file</div>
+        <div class="upload-desc" data-i18n="uploadDesc">Download button will appear once recognized.</div>
     </div>
     <input type="file" id="csvFile" accept=".csv" style="display: none;">
     
     <div id="fileNameDisplay"></div>
-    <button id="downloadBtn" class="btn-download" data-i18n="downloadBtn" onclick="generateAndDownloadJSX()">스크립트 다운로드</button>
+    <button id="downloadBtn" class="btn-download" data-i18n="downloadBtn" onclick="generateAndDownloadJSX()">Download Script</button>
 
     <div class="guide-box">
-        <strong data-i18n="guideTitle">📂 csv2AE_Button.jsx 설치 경로</strong>
+        <strong data-i18n="guideTitle">📂 Installation Path</strong>
         
         <div class="path-title">Windows</div>
-        <div class="path-box">C:\Program Files\Adobe\Adobe After Effects <span data-i18n="verTag">(버전)</span>\Support Files\Scripts\ScriptUI Panels</div>
+        <div class="path-box">C:\Program Files\Adobe\Adobe After Effects <span data-i18n="verTag">(Version)</span>\Support Files\Scripts\ScriptUI Panels</div>
         
         <div class="path-title">Mac OS</div>
-        <div class="path-box">Applications/Adobe After Effects <span data-i18n="verTag">(버전)</span>/Scripts/ScriptUI Panels</div>
+        <div class="path-box">Applications/Adobe After Effects <span data-i18n="verTag">(Version)</span>/Scripts/ScriptUI Panels</div>
         
         <div class="tip">
-            <strong data-i18n="tipTitle">💡 사용 팁</strong><br>
-            <span data-i18n="tipDesc">애프터 이펙트 재시작 후 <b>[Window]</b> 메뉴에서 패널을 열어주세요. <b>창의 이름을 클릭해 드래그</b>하면 타임라인이나 프로젝트 패널 등 <b>원하는 위치에 자유롭게 배치</b>하여 고정해두고 쓸 수 있습니다.</span>
+            <strong data-i18n="tipTitle">💡 Usage Tips</strong><br>
+            <span data-i18n="tipDesc">Open the panel from <b>[Window]</b> after restarting AE. You can <b>drag the window title</b> to dock it anywhere.</span>
         </div>
     </div>
 </div>
 
 <script>
     const i18n = {
+        en: {
+            title: "🔄 csv2AE: AE Automation",
+            fpsLabel: "AE Framerate:",
+            noticeTitle: "📝 Tool Description & Notes",
+            notice1: "• Converts Clip Studio CSV timesheets to AE Time Remap keyframes.",
+            notice2: "• Recommended: <code>Animation Folder + Cell Name</code> for exported file names.",
+            notice3: "• <code>●</code>, <code>○</code> labels are automatically processed as blanks.",
+            uploadText: "Click here or drag a CSV file",
+            uploadDesc: "Download button will appear once recognized.",
+            downloadBtn: "Download Script",
+            guideTitle: "📂 Installation Path",
+            verTag: "(Version)",
+            tipTitle: "💡 Usage Tips",
+            tipDesc: "Open the panel from <b>[Window]</b> after restarting AE. You can <b>drag the window title</b> to dock it anywhere."
+        },
         ko: {
             title: "🔄 csv2AE: AE 타임리맵 자동화",
             fpsLabel: "AE 프레임레이트:",
-            noticeTitle: "📝 타임시트 인식 참고사항",
-            notice1: "• <code>●</code>, <code>○</code> 등의 동화 트랙 라벨은 무시(공백 처리)되어 이전 프레임의 속성을 그대로 유지합니다.",
-            notice2: "• 타 언어 환경에서 깨져 나오는 <code>œ (●)</code>, <code>› (○)</code>, <code>~ (×)</code> 문자들도 원본 기호와 동일하게 자동 복원되어 처리됩니다.",
+            noticeTitle: "📝 도구 설명 및 참고사항",
+            notice1: "• 클립 스튜디오 CSV 타임시트를 AE 타임리맵 키프레임으로 변환합니다.",
+            notice2: "• 권장: 셀 출력 시 <code>애니메이션 폴더명 + 셀명</code> 규칙을 권장합니다.",
+            notice3: "• <code>●</code>, <code>○</code> 등의 기호는 이전 프레임 유지(공백)로 자동 처리됩니다.",
             uploadText: "이곳을 클릭하거나 CSV 파일을 드래그하세요",
             uploadDesc: "파일이 인식되면 스크립트 다운로드 버튼이 나타납니다.",
             downloadBtn: "스크립트 다운로드",
-            guideTitle: "📂 csv2AE_Button.jsx 설치 경로",
+            guideTitle: "📂 설치 경로",
             verTag: "(버전)",
             tipTitle: "💡 사용 팁",
-            tipDesc: "애프터 이펙트 재시작 후 <b>[Window]</b> 메뉴에서 패널을 열어주세요. <b>창의 이름을 클릭해 드래그</b>하면 타임라인이나 프로젝트 패널 등 <b>원하는 위치에 자유롭게 배치</b>하여 고정해두고 쓸 수 있습니다."
-        },
-        en: {
-            title: "🔄 csv2AE: AE Time Remap Automation",
-            fpsLabel: "AE Framerate:",
-            noticeTitle: "📝 Timesheet Parsing Notes",
-            notice1: "• Track labels like <code>●</code> and <code>○</code> are ignored (treated as blanks) to maintain the previous frame's properties.",
-            notice2: "• Corrupted characters like <code>œ (●)</code>, <code>› (○)</code>, and <code>~ (×)</code> are automatically restored and processed.",
-            uploadText: "Click here or drag a CSV file",
-            uploadDesc: "The download button will appear once the file is recognized.",
-            downloadBtn: "Download Script",
-            guideTitle: "📂 csv2AE_Button.jsx Installation Path",
-            verTag: "(Version)",
-            tipTitle: "💡 Tips",
-            tipDesc: "After restarting After Effects, open the panel from the <b>[Window]</b> menu. You can <b>click and drag the window name</b> to dock it anywhere."
+            tipDesc: "애프터 이펙트 재시작 후 <b>[Window]</b> 메뉴에서 패널을 열어주세요. 창 이름을 드래그하여 원하는 위치에 고정할 수 있습니다."
         },
         ja: {
-            title: "🔄 csv2AE: AE タイムリマップ自動化",
+            title: "🔄 csv2AE: AE タイムリマップ自動화",
             fpsLabel: "AE フレームレート:",
-            noticeTitle: "📝 タイムシート認識に関する注意事項",
-            notice1: "• <code>●</code>、<code>○</code> などの動画トラックラベルは無視（空白処理）され、前のフレームのプロパティを維持します。",
-            notice2: "• 他言語環境で文字化けする <code>œ (●)</code>、<code>› (○)</code>、<code>~ (×)</code> の文字も、元の記号として自動復元され処理されます。",
-            uploadText: "ここをクリックするか、CSVファイルをドラッグしてください",
-            uploadDesc: "ファイルが認識されると、スクリプトのダウンロードボタンが表示されます。",
+            noticeTitle: "📝 ツール説明と注意事項",
+            notice1: "• Clip Studio CSV タイムシートを AE タイムリマップに変換します。",
+            notice2: "• 推奨: セル出力時は <code>アニメーションフォルダ名 + セル名</code> を推奨します。",
+            notice3: "• <code>●</code>, <code>○</code> などの記号は空白として自動処理されます。",
+            uploadText: "クリックまたはCSVをドラッグ",
+            uploadDesc: "認識されるとダウンロードボタンが表示されます。",
             downloadBtn: "スクリプトをダウンロード",
-            guideTitle: "📂 csv2AE_Button.jsx インストールパス",
+            guideTitle: "📂 インストールパス",
             verTag: "(バージョン)",
             tipTitle: "💡 ヒント",
-            tipDesc: "After Effectsを再起動後、<b>[ウィンドウ]</b>メニューからパネルを開いてください。好きな場所にドッキングして使用できます。"
+            tipDesc: "AE再起動後、<b>[ウィンドウ]</b>メニューからパネルを開き、好きな場所にドッキングできます。"
         }
     };
 
@@ -149,11 +152,12 @@
         const lang = document.getElementById('langSelect').value;
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (i18n[lang][key]) {
-                el.innerHTML = i18n[lang][key];
-            }
+            if (i18n[lang][key]) el.innerHTML = i18n[lang][key];
         });
     }
+
+    // Initialize English UI on load
+    window.onload = changeLanguage;
 
     let matrix = [];
     let exportFileName = "csv2AE_Data"; 
@@ -165,7 +169,7 @@
 
     function handleFile(file) {
         if (!file || !file.name.toLowerCase().endsWith('.csv')) {
-            alert("CSV 파일만 첨부 가능합니다.");
+            alert("Please upload a CSV file.");
             return;
         }
         const fileNameDisplay = document.getElementById('fileNameDisplay');
@@ -232,7 +236,7 @@
         }
         const jsxContent = `(function() {
     var comp = app.project.activeItem;
-    if (!comp || !(comp instanceof CompItem)) { alert("활성화된 컴포지션이 없습니다."); return; }
+    if (!comp || !(comp instanceof CompItem)) { alert("No active composition found."); return; }
     var layersData = ${JSON.stringify(layersData)};
     var appliedCount = 0;
     for (var layerName in layersData) {
@@ -240,7 +244,7 @@
         for (var i = 1; i <= comp.numLayers; i++) {
             var rawName = comp.layer(i).name;
             if (rawName === layerName) { targetLayer = comp.layer(i); break; }
-            var cleanName = rawName.replace(/\\.[a-zA-Z0-9]+$/i, '').replace(/_?\\[\\d+-\\d+\\]$/, '');
+            var cleanName = rawName.replace(/\\.[a-zA-Z0-9]+$/i, '').replace(/_?\\\[\\d+-\\d+\\\]$/, '');
             if (cleanName === layerName) { targetLayer = comp.layer(i); break; }
         }
         if (!targetLayer) continue;
@@ -259,7 +263,7 @@
         }
         appliedCount++;
     }
-    alert("✅ " + appliedCount + "개 레이어 적용 완료!");
+    alert("✅ Applied to " + appliedCount + " layers!");
 })();`;
         const blob = new Blob([jsxContent], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
