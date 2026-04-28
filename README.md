@@ -2,7 +2,7 @@
 
 A ScriptUI panel for Adobe After Effects that automatically converts Clip Studio Paint CSV timesheets into Time Remap keyframes. Optimized for 24fps anime production pipelines.
 
-### 📥 [Download `csv2AE_Panel.jsx`](https://raw.githubusercontent.com/sakugahoukai/csv2AE/refs/heads/main/csv2AE_Panel.jsx)
+### [Download `csv2AE_Panel.jsx`](https://github.com/sakugahoukai/csv2AE/releases/download/v1.0/csv2AE_Panel.jsx)
 
 ---
 
