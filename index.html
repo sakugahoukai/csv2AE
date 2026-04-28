@@ -51,7 +51,7 @@
         <h2 data-i18n="title">🔄 csv2AE: AE Automation</h2>
         <div class="header-right">
             <select id="langSelect" class="lang-select" onchange="changeLanguage()">
-                <option value="en" selected>🇺🇸 English</option>
+                <option value="en">🇺🇸 English</option>
                 <option value="ko">🇰🇷 한국어</option>
                 <option value="ja">🇯🇵 日本語</option>
             </select>
@@ -112,7 +112,7 @@
             notice3: "• <code>●</code>, <code>○</code> などの記号は、前のフレームを維持（空白）として自動処理されます。",
             uploadText: "ここをクリックするか、CSVファイルをドラッグしてください",
             uploadDesc: "ファイルが認識されると、スクリプトのダウンロードボタンが表示されます。",
-            downloadBtn: "スクリプトをダウンロード"
+            downloadBtn: "スク리프트 다운로드"
         }
     };
 
@@ -124,7 +124,21 @@
         });
     }
 
-    window.onload = changeLanguage;
+    // 접속 환경 감지 로직
+    window.onload = function() {
+        const userLang = navigator.language || navigator.userLanguage;
+        const select = document.getElementById('langSelect');
+        
+        if (userLang.includes('ko')) {
+            select.value = 'ko';
+        } else if (userLang.includes('ja')) {
+            select.value = 'ja';
+        } else {
+            select.value = 'en';
+        }
+        
+        changeLanguage();
+    };
 
     let matrix = [];
     let exportFileName = "csv2AE_Data"; 
@@ -153,4 +167,95 @@
     }
 
     csvFileInput.onchange = function(e) {
-        if (e.
+        if (e.target.files.length > 0) {
+            handleFile(e.target.files[0]);
+            e.target.value = ''; 
+        }
+    };
+
+    uploadArea.addEventListener('dragenter', (e) => uploadArea.classList.add('drag-over'));
+    uploadArea.addEventListener('dragover', (e) => uploadArea.classList.add('drag-over'));
+    uploadArea.addEventListener('dragleave', (e) => uploadArea.classList.remove('drag-over'));
+    uploadArea.addEventListener('drop', (e) => {
+        uploadArea.classList.remove('drag-over');
+        if (e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+    });
+
+    function generateAndDownloadJSX() {
+        const fps = parseFloat(document.getElementById('fps').value) || 24;
+        const headers = matrix[1]; 
+        let layersData = {};
+        for (let colIdx = 1; colIdx < headers.length; colIdx++) {
+            const layerName = headers[colIdx];
+            if (!layerName) continue;
+            let keyframes = [];
+            let lastSec = null, lastOpacity = null, lastFrame = null;
+            let currentSec = 0.0, currentOpacity = 0; 
+            for (let j = 2; j < matrix.length; j++) {
+                let valStr = (matrix[j][colIdx] || "").trim().toLowerCase();
+                const timelineFrame = j - 2; 
+                valStr = valStr.replace(/[\u200B\uFEFF]/g, '');
+                valStr = valStr.replace(/~/g, 'x').replace(/œ/g, '●').replace(/›/g, '○');
+                
+                if (valStr.includes('x') || valStr.includes('×')) {
+                    currentOpacity = 0;
+                } 
+                else if (valStr !== "" && !isNaN(valStr)) {
+                    currentSec = (parseFloat(valStr) - 1) / fps;
+                    currentOpacity = 100;
+                }
+                
+                if (currentSec !== lastSec || currentOpacity !== lastOpacity) {
+                    if (lastFrame !== null && timelineFrame > lastFrame + 1) {
+                        keyframes.push({ t: (timelineFrame - 1) / fps, tr: lastSec, op: lastOpacity });
+                    }
+                    keyframes.push({ t: timelineFrame / fps, tr: currentSec, op: currentOpacity });
+                    lastSec = currentSec; lastOpacity = currentOpacity; lastFrame = timelineFrame;
+                }
+            }
+            if (keyframes.length > 0) layersData[layerName] = keyframes;
+        }
+        const jsxContent = `(function() {
+    var comp = app.project.activeItem;
+    if (!comp || !(comp instanceof CompItem)) { alert("No active composition found."); return; }
+    var layersData = ${JSON.stringify(layersData)};
+    var appliedCount = 0;
+    for (var layerName in layersData) {
+        var targetLayer = null;
+        for (var i = 1; i <= comp.numLayers; i++) {
+            var rawName = comp.layer(i).name;
+            if (rawName === layerName) { targetLayer = comp.layer(i); break; }
+            var cleanName = rawName.replace(/\\.[a-zA-Z0-9]+$/i, '').replace(/_?\\\[\\d+-\\d+\\\]$/, '');
+            if (cleanName === layerName) { targetLayer = comp.layer(i); break; }
+        }
+        if (!targetLayer) continue;
+        targetLayer.timeRemapEnabled = true;
+        targetLayer.inPoint = 0; targetLayer.outPoint = comp.duration;
+        var trProp = targetLayer.property("ADBE Time Remapping");
+        var opProp = targetLayer.property("ADBE Transform Group").property("ADBE Opacity");
+        var data = layersData[layerName];
+        for (var k = 0; k < data.length; k++) {
+            trProp.setValueAtTime(data[k].t, data[k].tr);
+            opProp.setValueAtTime(data[k].t, data[k].op);
+            var trKeyIdx = trProp.nearestKeyIndex(data[k].t);
+            var opKeyIdx = opProp.nearestKeyIndex(data[k].t);
+            if (trKeyIdx > 0) trProp.setInterpolationTypeAtKey(trKeyIdx, KeyframeInterpolationType.HOLD);
+            if (opKeyIdx > 0) opProp.setInterpolationTypeAtKey(opKeyIdx, KeyframeInterpolationType.HOLD);
+        }
+        appliedCount++;
+    }
+    alert("✅ Applied to " + appliedCount + " layers!");
+})();`;
+        const blob = new Blob([jsxContent], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = exportFileName + '.jsx';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+</script>
+</body>
+</html>
