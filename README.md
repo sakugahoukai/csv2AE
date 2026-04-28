@@ -22,6 +22,18 @@ Place the downloaded `.jsx` file into your After Effects `ScriptUI Panels` folde
 
 ---
 
+<img width="1352" height="760" alt="test" src="https://github.com/user-attachments/assets/7d004740-52a7-4771-8f3d-778d9a5a4789" />
+
+## 🚀 How to Use
+
+1.  Prepare Composition: Create a composition with your desired size and duration. (Starting timecode **'1'** is recommended.)
+2.  Import Assets: Add your animation cell folders to the Project panel, then drag them into the Composition panel.
+3. Verify your **AE FPS** setting in the panel (Default is 24).
+4. Click **[Import CSV & Apply]** and select your Clip Studio CSV file.
+5. Done! The script will automatically parse the data and apply the exact timing.
+
+---
+
 ## ✨ Features
 
 * **Direct Import:** Reads Clip Studio CSV timesheets directly within After Effects.
@@ -32,12 +44,10 @@ Place the downloaded `.jsx` file into your After Effects `ScriptUI Panels` folde
 
 ---
 
-<img width="1352" height="760" alt="test" src="https://github.com/user-attachments/assets/7d004740-52a7-4771-8f3d-778d9a5a4789" />
+### 🔣 Symbol Recognition & Anti-Mojibake (Garbled Text) Auto-Fix
+This script is strictly optimized for the 2D animation pipeline, understanding standard timesheet symbols while actively defending against OS encoding conflicts.
 
-## 🚀 How to Use
-
-1.  Prepare Composition: Create a composition with your desired size and duration. (Starting timecode **'1'** is recommended.)
-2.  Import Assets: Add your animation cell folders to the Project panel, then drag them into the Composition panel.
-3. Verify your **AE FPS** setting in the panel (Default is 24).
-4. Click **[Import CSV & Apply]** and select your Clip Studio CSV file.
-5. Done! The script will automatically parse the data and apply the exact timing.
+* **Numbers (`1`, `2`, `3`...):** Maps to the specific frame of the cel. Opacity is set to `100%`.
+* **`x` or `×` (Kara / Empty Cel):** The character leaves the screen or blinks. The script automatically drops the layer's Opacity to `0%`.
+* **`●` / `○` (Track / Hold):** Maintains the current cel. The script smartly holds the previous Time Remap values without creating unnecessary keyframes.
+* **🛡️ Auto-Fix for Broken Text:** When exporting CSVs from Clip Studio Paint, special symbols often get corrupted into garbled text (e.g., `●` turns into `œ`, `○` into `›`, or `×` into `~`) due to Shift-JIS/UTF-16 encoding mismatches across different operating systems. **You do not need to manually fix the CSV.** The script automatically detects these broken strings on the fly and restores them to their correct timing instructions!
