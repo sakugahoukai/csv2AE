@@ -54,3 +54,30 @@ The script automatically matches the CSV column headers to your After Effects la
 ### ⏱️ Keyframe Interpolation & Layer Duration
 * **Hold Interpolation:** All generated Time Remap and Opacity keyframes are automatically set to **Hold** interpolation. This prevents unintended smooth transitions or blending between frames, strictly preserving the exact step-timing of the 2D animation.
 * **Auto-Extension of Layer Duration:** When applying Time Remapping, the script automatically extends the target layer's `outPoint` to match the total duration of the composition. This ensures the layer remains visible throughout the timeline, even if the original imported source footage is shorter than the composition length.
+
+---
+
+## 🌏 Multi-language Guide
+
+* [한국어 설명 (Korean)](#한국어-설명)
+* [日本語ガイド (Japanese)](#日本語ガイド)
+
+---
+
+### 한국어 설명
+
+**csv2AE**는 클립스튜디오의 애니메이션 타임시트(CSV)를 애프터 이펙트의 타임리맵 키프레임으로 자동 변환해 주는 스크립트입니다.
+
+* **보간 고정:** 모든 키프레임은 '홀드(Hold)'로 생성되어 프레임 간의 잔상을 방지합니다.
+* **레이어 자동 확장:** 원본 소스 길이가 짧더라도 레이어 막대를 컴포지션 끝까지 자동으로 늘려줍니다.
+* **스마트 매칭:** 레이어 이름 뒤에 붙는 확장자(`.png`)나 시퀀스 번호(`[0-24]`)를 자동으로 무시하고 CSV의 소재명과 연결합니다.
+* **오류 복구:** 인코딩 문제로 인해 `●`, `○`, `×` 기호가 `œ`, `›`, `~` 등으로 깨져서 보일 때도 스크립트가 이를 자동으로 인식하여 정상 처리합니다.
+
+### 日本語ガイド
+
+**csv2AE**は、CLIP STUDIO PAINTのタイムシート(CSV)をAfter Effectsのタイムリマップキーフレームに自動変換するスクリプトです。
+
+* **固定補間:** すべてのキーフレームは「固定(Hold)」として生成され、フレーム間のゴースト現象を防ぎます。
+* **レイヤーの自動延長:** ソースの長さに関係なく、レイヤーバーをコンポジションの最後まで自動的に延長します。
+* **スマートマッチング:** レイヤー名の後ろにある拡張子(`.png`)やシーケンス番号(`[0-24]`)を自動的に無視し、CSVの素材名と照合します。
+* **文字化け対応:** エンコードの問題で `●`、`○`、`×` が `œ`、`›`、`~` などに文字化けして保存された場合でも、スクリプトが自動的に判別して正常に処理します。
