@@ -112,7 +112,7 @@
             notice3: "• <code>●</code>, <code>○</code> などの記号は、前のフレームを維持（空白）として自動処理されます。",
             uploadText: "ここをクリックするか、CSVファイルをドラッグしてください",
             uploadDesc: "ファイルが認識されると、スクリプトのダウンロードボタンが表示されます。",
-            downloadBtn: "スク리프트 다운로드"
+            downloadBtn: "スクリプトをダウンロード"
         }
     };
 
@@ -124,19 +124,12 @@
         });
     }
 
-    // 접속 환경 감지 로직
     window.onload = function() {
         const userLang = navigator.language || navigator.userLanguage;
         const select = document.getElementById('langSelect');
-        
-        if (userLang.includes('ko')) {
-            select.value = 'ko';
-        } else if (userLang.includes('ja')) {
-            select.value = 'ja';
-        } else {
-            select.value = 'en';
-        }
-        
+        if (userLang.includes('ko')) select.value = 'ko';
+        else if (userLang.includes('ja')) select.value = 'ja';
+        else select.value = 'en';
         changeLanguage();
     };
 
@@ -149,10 +142,7 @@
     window.addEventListener("drop", (e) => e.preventDefault(), false);
 
     function handleFile(file) {
-        if (!file || !file.name.toLowerCase().endsWith('.csv')) {
-            alert("Please upload a CSV file.");
-            return;
-        }
+        if (!file || !file.name.toLowerCase().endsWith('.csv')) { alert("Please upload a CSV file."); return; }
         const fileNameDisplay = document.getElementById('fileNameDisplay');
         fileNameDisplay.style.display = 'block';
         fileNameDisplay.innerText = "📎 " + file.name;
@@ -166,13 +156,7 @@
         reader.readAsText(file, 'UTF-8');
     }
 
-    csvFileInput.onchange = function(e) {
-        if (e.target.files.length > 0) {
-            handleFile(e.target.files[0]);
-            e.target.value = ''; 
-        }
-    };
-
+    csvFileInput.onchange = (e) => { if (e.target.files.length > 0) handleFile(e.target.files[0]); e.target.value = ''; };
     uploadArea.addEventListener('dragenter', (e) => uploadArea.classList.add('drag-over'));
     uploadArea.addEventListener('dragover', (e) => uploadArea.classList.add('drag-over'));
     uploadArea.addEventListener('dragleave', (e) => uploadArea.classList.remove('drag-over'));
@@ -194,21 +178,11 @@
             for (let j = 2; j < matrix.length; j++) {
                 let valStr = (matrix[j][colIdx] || "").trim().toLowerCase();
                 const timelineFrame = j - 2; 
-                valStr = valStr.replace(/[\u200B\uFEFF]/g, '');
-                valStr = valStr.replace(/~/g, 'x').replace(/œ/g, '●').replace(/›/g, '○');
-                
-                if (valStr.includes('x') || valStr.includes('×')) {
-                    currentOpacity = 0;
-                } 
-                else if (valStr !== "" && !isNaN(valStr)) {
-                    currentSec = (parseFloat(valStr) - 1) / fps;
-                    currentOpacity = 100;
-                }
-                
+                valStr = valStr.replace(/[\u200B\uFEFF]/g, '').replace(/~/g, 'x').replace(/œ/g, '●').replace(/›/g, '○');
+                if (valStr.includes('x') || valStr.includes('×')) { currentOpacity = 0; } 
+                else if (valStr !== "" && !isNaN(valStr)) { currentSec = (parseFloat(valStr) - 1) / fps; currentOpacity = 100; }
                 if (currentSec !== lastSec || currentOpacity !== lastOpacity) {
-                    if (lastFrame !== null && timelineFrame > lastFrame + 1) {
-                        keyframes.push({ t: (timelineFrame - 1) / fps, tr: lastSec, op: lastOpacity });
-                    }
+                    if (lastFrame !== null && timelineFrame > lastFrame + 1) keyframes.push({ t: (timelineFrame - 1) / fps, tr: lastSec, op: lastOpacity });
                     keyframes.push({ t: timelineFrame / fps, tr: currentSec, op: currentOpacity });
                     lastSec = currentSec; lastOpacity = currentOpacity; lastFrame = timelineFrame;
                 }
@@ -249,11 +223,8 @@
         const blob = new Blob([jsxContent], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
-        a.href = url;
-        a.download = exportFileName + '.jsx';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        a.href = url; a.download = exportFileName + '.jsx';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
         URL.revokeObjectURL(url);
     }
 </script>
