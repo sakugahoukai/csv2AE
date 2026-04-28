@@ -27,9 +27,4 @@ This tool is optimized for **24fps Anime production** in Adobe After Effects. It
 
 ---
 
-### **`[Tool Demo]`**
-*(Drag and drop your GIF here to show the demo)*
-
----
-
 > **Note:** This tool was created with the assistance of Gemini AI to streamline the 2D animation pipeline.
