@@ -1,6 +1,6 @@
 # 🔄 csv2AE: 24fps Anime Automation Tool
 
- [Launch csv2AE](https://sakugahoukai.github.io/csv2AE/)
+# [Launch csv2AE](https://sakugahoukai.github.io/csv2AE/)
 
 This tool is optimized for **24fps Anime production** in Adobe After Effects. It analyzes CSV timesheets exported from Clip Studio Paint and generates automation scripts (.jsx) for Time Remapping.
 
