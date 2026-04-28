@@ -36,8 +36,8 @@ Place the downloaded `.jsx` file into your After Effects `ScriptUI Panels` folde
 
 ## 🚀 How to Use
 
-1. Open your After Effects project and **activate the target composition** (click anywhere on its timeline).
-2. Go to the top menu bar, click **[Window]**, and select **`csv2AE_Panel.jsx`** at the very bottom.
+1.  Prepare Composition: Create a composition with your desired size and duration. (Starting timecode **'1'** is recommended.)
+2.  Import Assets: Add your animation cell folders to the Project panel, then drag them into the Composition panel.
 3. Verify your **AE FPS** setting in the panel (Default is 24).
 4. Click **[Import CSV & Apply]** and select your Clip Studio CSV file.
 5. Done! The script will automatically parse the data and apply the exact timing.
