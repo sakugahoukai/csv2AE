@@ -1,8 +1,3 @@
-# csv2AE
-Clip Studio CSV to After Effects Time Remap (Powered by Gemini)
-
----
-
 # 🔄 csv2AE: AE Time Remap Automation
 
 This is an automation utility designed to bridge the gap between **Clip Studio Paint** and **Adobe After Effects**. It analyzes exported CSV timesheets and generates keyframe data ready to be applied directly to the After Effects Time Remap property.
