@@ -44,10 +44,8 @@ Place the downloaded `.jsx` file into your After Effects `ScriptUI Panels` folde
 
 ---
 
-### 🔣 Symbol Recognition & Anti-Mojibake (Garbled Text) Auto-Fix
-This script is strictly optimized for the 2D animation pipeline, understanding standard timesheet symbols while actively defending against OS encoding conflicts.
-
-* **Numbers (`1`, `2`, `3`...):** Maps to the specific frame of the cel. Opacity is set to `100%`.
-* **`x` or `×` (Kara / Empty Cel):** The character leaves the screen or blinks. The script automatically drops the layer's Opacity to `0%`.
-* **`●` / `○` (Track / Hold):** Maintains the current cel. The script smartly holds the previous Time Remap values without creating unnecessary keyframes.
-* **🛡️ Auto-Fix for Broken Text:** When exporting CSVs from Clip Studio Paint, special symbols often get corrupted into garbled text (e.g., `●` turns into `œ`, `○` into `›`, or `×` into `~`) due to Shift-JIS/UTF-16 encoding mismatches across different operating systems. **You do not need to manually fix the CSV.** The script automatically detects these broken strings on the fly and restores them to their correct timing instructions!
+### 🔣 Supported Symbols & Text Recognition
+* **Numbers (`1`, `2`, `3`...):** Maps to the specific cel. Opacity is set to `100%`.
+* **`x` or `×` (Kara / Empty Cel):** Indicates an empty frame. Automatically drops the layer's Opacity to `0%`.
+* **`●` or `○` (Hold):** Maintains the current cel. Time Remap values are held without creating extra keyframes.
+* **Corrupted Text Support:** Automatically recognizes and processes corrupted symbols (such as `œ`, `›`, `~`) that occasionally occur due to encoding issues when exporting CSVs from Clip Studio Paint.
