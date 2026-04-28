@@ -1,4 +1,4 @@
-# 🔄 csv2AE: 24fps Anime Automation Tool
+# 🔄 csv2AE: Clip Studio CSV to AE Time Remap
 
 🔗 [Launch csv2AE](https://sakugahoukai.github.io/csv2AE/)
 
