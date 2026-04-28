@@ -32,6 +32,8 @@ Place the downloaded `.jsx` file into your After Effects `ScriptUI Panels` folde
 
 ---
 
+<img width="1352" height="760" alt="test" src="https://github.com/user-attachments/assets/7d004740-52a7-4771-8f3d-778d9a5a4789" />
+
 ## 🚀 How to Use
 
 1.  Prepare Composition: Create a composition with your desired size and duration. (Starting timecode **'1'** is recommended.)
