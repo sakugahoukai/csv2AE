@@ -34,18 +34,24 @@ Place the downloaded `.jsx` file into your After Effects `ScriptUI Panels` folde
 
 ---
 
-## ✨ Features
-
-* **Direct Import:** Reads Clip Studio CSV timesheets directly within After Effects.
-* **Smart Auto-Mapping:** Automatically matches CSV column headers with your AE layer names. *(Recommended: `Folder Name + Cell Name`)*
-* **Symbol Recognition:** Fully supports standard Japanese animation timing symbols (`●`, `○`, `x`). `x` (kara) automatically sets Opacity to 0%.
-* **Hold Interpolation:** All Time Remap and Opacity keyframes are set to Hold interpolation to preserve crisp 2D timing.
-* **Auto-Extension:** Automatically extends the layer outPoints to match the composition duration.
-
----
-
 ### 🔣 Supported Symbols & Text Recognition
 * **Numbers (`1`, `2`, `3`...):** Maps to the specific cel. Opacity is set to `100%`.
 * **`x` or `×` (Kara / Empty Cel):** Indicates an empty frame. Automatically drops the layer's Opacity to `0%`.
 * **`●` or `○` (Hold):** Maintains the current cel. Time Remap values are held without creating extra keyframes.
 * **Corrupted Text Support:** Automatically recognizes and processes corrupted symbols (such as `œ`, `›`, `~`) that occasionally occur due to encoding issues when exporting CSVs from Clip Studio Paint.
+
+---
+
+### 📁 Source Name Processing & Layer Matching
+The script automatically matches the CSV column headers to your After Effects layer names. To handle bundled assets and image sequences seamlessly, the script processes layer names using the following internal logic:
+
+* **Automatic Name Cleaning:** When After Effects imports bundled assets or image sequences, it often appends file extensions and frame ranges to the layer name. The script automatically strips these redundant suffixes during the matching process.
+    * **Removes Extensions:** Strips suffixes like `.png`, `.psd`, `.jpg` (e.g., `Cell_A.png` → `Cell_A`).
+    * **Removes Sequence Brackets:** Strips bracketed frame numbers commonly added by AE, such as `_[001-072]` or `[0-24]`.
+* **Matching Example:** If your CSV header (Animation Folder name) is `A`, the script will accurately find and apply Time Remap to an AE layer named `A.png` or `A_[1-24]`. You do not need to manually rename your imported sequence layers.
+
+---
+
+### ⏱️ Keyframe Interpolation & Layer Duration
+* **Hold Interpolation:** All generated Time Remap and Opacity keyframes are automatically set to **Hold** interpolation. This prevents unintended smooth transitions or blending between frames, strictly preserving the exact step-timing of the 2D animation.
+* **Auto-Extension of Layer Duration:** When applying Time Remapping, the script automatically extends the target layer's `outPoint` to match the total duration of the composition. This ensures the layer remains visible throughout the timeline, even if the original imported source footage is shorter than the composition length.
