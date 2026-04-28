@@ -10,8 +10,7 @@
 ## 📥 Download & Installation
 
 ### 1. Download
-Click the link below to download the latest release:
-**[Download](https://github.com/sakugahoukai/csv2AE/releases/download/v1.0/csv2AE_Panel.jsx)**
+Click the link below to download the **[latest release](https://github.com/sakugahoukai/csv2AE/releases/download/v1.0/csv2AE_Panel.jsx)**
 
 ### 2. Install
 Place the downloaded `.jsx` file into your After Effects `ScriptUI Panels` folder:
