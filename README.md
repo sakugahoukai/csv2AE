@@ -32,6 +32,8 @@ Place the downloaded `.jsx` file into your After Effects `ScriptUI Panels` folde
 
 ---
 
+<img width="1920" height="1080" alt="test" src="https://github.com/user-attachments/assets/6dc6629c-9d1e-4e23-ab47-e7cbf2b6927a" />
+
 ## 🚀 How to Use
 
 1. Open your After Effects project and **activate the target composition** (click anywhere on its timeline).
