@@ -40,13 +40,10 @@
         
         #fileNameDisplay { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 25px; display: none; }
         
-        .btn-download { background: #007aff; color: #fff; border: none; padding: 14px 40px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; display: none; margin: 0 auto 30px auto; transition: background 0.2s; box-shadow: 0 2px 4px rgba(0,122,255,0.2); width: 100%; max-width: 300px; }
+        .btn-download { background: #007aff; color: #fff; border: none; padding: 14px 40px; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; display: none; margin: 20px auto 0 auto; transition: background 0.2s; box-shadow: 0 2px 4px rgba(0,122,255,0.2); width: 100%; max-width: 300px; }
         .btn-download:hover { background: #0056b3; }
-        
-        .guide-box { background: #fafafa; padding: 25px; border-radius: 6px; text-align: left; font-size: 14px; line-height: 1.7; border: 1px solid var(--ae-border); }
-        .path-title { font-weight: bold; margin-top: 15px; color: #333; font-size: 13px; }
-        .path-box { background: #f0f0f3; padding: 8px 12px; border-radius: 4px; font-family: monospace; color: #222; margin: 4px 0 15px 0; font-size: 12px; border: 1px solid #e5e5ea; }
-        .tip { margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--ae-border); color: #555; }
+
+        .tip { margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--ae-border); color: #555; text-align: left; font-size: 14px; line-height: 1.7; }
     </style>
 </head>
 <body>
@@ -83,19 +80,9 @@
     <div id="fileNameDisplay"></div>
     <button id="downloadBtn" class="btn-download" data-i18n="downloadBtn" onclick="generateAndDownloadJSX()">Download Script</button>
 
-    <div class="guide-box">
-        <strong data-i18n="guideTitle">📂 Installation Path</strong>
-        
-        <div class="path-title">Windows</div>
-        <div class="path-box">C:\Program Files\Adobe\Adobe After Effects <span data-i18n="verTag">(Version)</span>\Support Files\Scripts\ScriptUI Panels</div>
-        
-        <div class="path-title">Mac OS</div>
-        <div class="path-box">Applications/Adobe After Effects <span data-i18n="verTag">(Version)</span>/Scripts/ScriptUI Panels</div>
-        
-        <div class="tip">
-            <strong data-i18n="tipTitle">💡 Usage Tips</strong><br>
-            <span data-i18n="tipDesc">Open the panel from <b>[Window]</b> after restarting AE. You can <b>drag the window title</b> to dock it anywhere.</span>
-        </div>
+    <div class="tip">
+        <strong data-i18n="tipTitle">💡 Usage Tips</strong><br>
+        <span data-i18n="tipDesc">Open the panel from <b>[Window]</b> after restarting AE. You can <b>drag the window title</b> to dock it anywhere.</span>
     </div>
 </div>
 
@@ -111,8 +98,6 @@
             uploadText: "Click here or drag a CSV file",
             uploadDesc: "Download button will appear once recognized.",
             downloadBtn: "Download Script",
-            guideTitle: "📂 Installation Path",
-            verTag: "(Version)",
             tipTitle: "💡 Usage Tips",
             tipDesc: "Open the panel from <b>[Window]</b> after restarting AE. You can <b>drag the window title</b> to dock it anywhere."
         },
@@ -126,23 +111,19 @@
             uploadText: "이곳을 클릭하거나 CSV 파일을 드래그하세요",
             uploadDesc: "파일이 인식되면 스크립트 다운로드 버튼이 나타납니다.",
             downloadBtn: "스크립트 다운로드",
-            guideTitle: "📂 설치 경로",
-            verTag: "(버전)",
             tipTitle: "💡 사용 팁",
             tipDesc: "애프터 이펙트 재시작 후 <b>[Window]</b> 메뉴에서 패널을 열어주세요. 창 이름을 드래그하여 원하는 위치에 고정할 수 있습니다."
         },
         ja: {
             title: "🔄 csv2AE: AE タイムリマップ自動화",
             fpsLabel: "AE フレームレート:",
-            noticeTitle: "📝 ツール説明と注意事項",
+            noticeTitle: "📝 ツール説明과 注意事項",
             notice1: "• Clip Studio CSV タイムシートを AE タイムリマップに変換します。",
             notice2: "• 推奨: セル出力時は <code>アニメーションフォルダ名 + セル名</code> を推奨します。",
             notice3: "• <code>●</code>, <code>○</code> などの記号は空白として自動処理されます。",
             uploadText: "クリックまたはCSVをドラッグ",
             uploadDesc: "認識されるとダウンロードボタンが表示されます。",
             downloadBtn: "スクリプトをダウンロード",
-            guideTitle: "📂 インストールパス",
-            verTag: "(バージョン)",
             tipTitle: "💡 ヒント",
             tipDesc: "AE再起動後、<b>[ウィンドウ]</b>メニューからパネルを開き、好きな場所にドッキングできます。"
         }
@@ -156,7 +137,6 @@
         });
     }
 
-    // Initialize English UI on load
     window.onload = changeLanguage;
 
     let matrix = [];
