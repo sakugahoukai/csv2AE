@@ -34,7 +34,7 @@ Place the downloaded `.jsx` file into your After Effects `ScriptUI Panels` folde
 
 ## 🚀 How to Use
 
-1.  Prepare Composition: Create a composition with your desired size and duration. (Starting timecode **'1'** is recommended.)
+1.  Prepare Composition: Create a composition with your desired size and duration. (Starting timecode '1' is recommended.)
 2.  Import Assets: Add your animation cell folders to the Project panel, then drag them into the Composition panel.
 3. Verify your **AE FPS** setting in the panel (Default is 24).
 4. Click **[Import CSV & Apply]** and select your Clip Studio CSV file.
@@ -90,7 +90,7 @@ The script automatically matches the CSV column headers to your After Effects la
 
 ### 🚀 사용법
 
-1.  **컴포지션 준비:** 원하는 크기와 길이로 컴포지션을 생성합니다. (시작 타임코드는 **'1'**을 권장합니다.)
+1.  **컴포지션 준비:** 원하는 크기와 길이로 컴포지션을 생성합니다. (시작 타임코드는 '1'을 권장합니다.)
 2.  **에셋 불러오기:** 애니메이션 셀 폴더들을 프로젝트 패널에 추가한 뒤, 컴포지션 패널로 드래그합니다.
 3.  패널에서 **AE FPS** 설정을 확인합니다 (기본값은 24).
 4.  **[CSV 불러오기 및 적용]**을 클릭하고 클립스튜디오 CSV 파일을 선택합니다.
@@ -136,9 +136,9 @@ The script automatically matches the CSV column headers to your After Effects la
 **[最新リリース (latest release)](https://github.com/sakugahoukai/csv2AE/releases/download/v1.1/csv2AE.jsx)**
 
 #### 2. インストール
-ダウンロードした `.jsx` ファイルをAfter Effectsの `ScriptUI Panels` フォルダに配置します。
-* **Windows:** `C:\Program Files\Adobe\Adobe After Effects <バージョン>\Support Files\Scripts\ScriptUI Panels`
-* **Mac OS:** `Applications/Adobe After Effects <バージョン>/Scripts/ScriptUI Panels`
+ダウンロードした 「.jsx」 ファイルをAfter Effectsの 「ScriptUI Panels」 フォルダに配置します。
+* **Windows:** 「C:\Program Files\Adobe\Adobe After Effects <バージョン>\Support Files\Scripts\ScriptUI Panels」
+* **Mac OS:** 「Applications/Adobe After Effects <バージョン>/Scripts/ScriptUI Panels」
 
 *⚠️ 注意: スクリプトをフォルダに配置した後、After Effectsを再起動する必要があります。*
 
@@ -146,7 +146,7 @@ The script automatically matches the CSV column headers to your After Effects la
 
 ### 🚀 使い方
 
-1.  **コンポジションの準備:** 希望のサイズとデュレーションでコンポジションを作成します。（開始タイムコードは **'1'** を推奨します。）
+1.  **コンポジションの準備:** 希望のサイズとデュレーションでコンポジションを作成します。（開始タイムコードは 「1」を推奨します。）
 2.  **アセットのインポート:** アニメーションのセルフォルダをプロジェクトパネルに追加し、コンポジションパネルにドラッグします。
 3.  パネルで **AE FPS** の設定を確認します（デフォルトは24）。
 4.  **[CSVを読み込んで適用]** をクリックし、CLIP STUDIOのCSVファイルを選択します。
@@ -155,10 +155,10 @@ The script automatically matches the CSV column headers to your After Effects la
 ---
 
 ### 🔣 対応記号とテキスト認識
-* **数字 (`1`, `2`, `3`...):** 特定のセルにマッピングされます。不透明度(Opacity)は `100%` に設定されます。
-* **`x` または `×` (空セル):** 空のフレームを示します。自動的にレイヤーの不透明度を `0%` に下げます。
-* **`●` または `○` (保持):** 現在のセルを維持します。不要なキーフレームを作成せずにタイムリマップ値を保持します。
-* **文字化け対応:** CLIP STUDIO PAINTからCSVを書き出す際、エンコードの問題でまれに発生する文字化けした記号（例: `œ`、`›`、`~`）を自動的に認識して処理します。
+* **数字 (「1」, 「2」, 「3」...):** 特定のセルにマッピングされます。不透明度(Opacity)は 「100%」 に設定されます。
+* **「x」 または 「×」 (空セル):** 空のフレームを示します。自動的にレイヤーの不透明度を 「0%」 に下げます。
+* **「●」 または 「○」 (保持):** 現在のセルを維持します。不要なキーフレームを作成せずにタイムリマップ値を保持します。
+* **文字化け対応:** CLIP STUDIO PAINTからCSVを書き出す際、エンコードの問題でまれに発生する文字化けした記号（例: 「œ」、「›」、「~」）を自動的に認識して処理します。
 
 ---
 
@@ -166,12 +166,12 @@ The script automatically matches the CSV column headers to your After Effects la
 スクリプトは、CSVの列ヘッダーとAfter Effectsのレイヤー名を自動的に照合します。連番素材やイメージシーケンスをスムーズに処理するために、スクリプトは以下の内部ロジックを使用してレイヤー名を処理します。
 
 * **自動名前クレンジング:** After Effectsで連番素材やイメージシーケンスをインポートすると、レイヤー名にファイル拡張子やフレーム範囲が追加されることがよくあります。スクリプトはマッチングプロセス中にこれらの不要な接尾辞を自動的に除去します。
-    * **拡張子の除去:** `.png`、`.psd`、`.jpg` などの接尾辞を除去します（例: `Cell_A.png` → `Cell_A`）。
-    * **シーケンス括弧の除去:** AEがよく追加する `_[001-072]` や `[0-24]` などの括弧付きフレーム番号を除去します。
-* **マッチング例:** CSVヘッダー（アニメーションフォルダ名）が `A` の場合、スクリプトは `A.png` または `A_[1-24]` という名前のAEレイヤーを正確に見つけてタイムリマップを適用します。インポートしたシーケンスレイヤーの名前を手動で変更する必要はありません。
+    * **拡張子の除去:** 「.png」、「.psd」、「.jpg」 などの接尾辞を除去します（例: 「Cell_A.png」 → 「Cell_A」）
+    * **シーケンス括弧の除去:** AEがよく追加する 「_[001-072]」 や 「[0-24]」 などの括弧付きフレーム番号を除去します。
+* **マッチング例:** CSVヘッダー（アニメーションフォルダ名）が 「A」 の場合、スクリプトは 「A.png」 または 「A_[1-24]」 という名前のAEレイヤーを正確に見つけてタイムリマップを適用します。インポートしたシーケンスレイヤーの名前を手動で変更する必要はありません。
 
 ---
 
 ### ⏱️ キーフレーム補間とレイヤーの長さ
 * **固定補間:** 生成されたすべてのタイムリマップと不透明度のキーフレームは、自動的に **固定(Hold)** 補間に設定されます。これにより、フレーム間の意図しない滑らかなトランジションやブレンドを防ぎ、2Dアニメーションの正確なステップタイミングを厳密に保持します。
-* **レイヤー長さの自動延長:** タイムリマップを適用する際、スクリプトはターゲットレイヤーの `outPoint` をコンポジションの全体の長さに合わせて自動的に延長します。これにより、インポートした元のソースフッテージがコンポジションの長さより短くても、タイムライン全体でレイヤーが表示されたままになります。
+* **レイヤー長さの自動延長:** タイムリマップを適用する際、スクリプトはターゲットレイヤーの 「outPoint」 をコンポジションの全体の長さに合わせて自動的に延長します。これにより、インポートした元のソースフッテージがコンポジションの長さより短くても、タイムライン全体でレイヤーが表示されたままになります。
