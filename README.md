@@ -19,7 +19,7 @@
 ## 📥 Download & Installation
 
 ### 1. Download
-**[latest release](https://github.com/sakugahoukai/csv2AE/releases/download/v1.0/csv2AE_Panel.jsx)**
+**[latest release](https://github.com/sakugahoukai/csv2AE/releases/download/v1.1/csv2AE.jsx)**
 
 ### 2. Install
 Place the downloaded `.jsx` file into your After Effects `ScriptUI Panels` folder:
@@ -77,7 +77,7 @@ The script automatically matches the CSV column headers to your After Effects la
 ### 📥 다운로드 및 설치
 
 #### 1. 다운로드
-**[최신 버전 다운로드 (latest release)](https://github.com/sakugahoukai/csv2AE/releases/download/v1.0/csv2AE_Panel.jsx)**
+**[최신 버전 다운로드 (latest release)](https://github.com/sakugahoukai/csv2AE/releases/download/v1.1/csv2AE.jsx)**
 
 #### 2. 설치
 다운로드한 `.jsx` 파일을 애프터 이펙트의 `ScriptUI Panels` 폴더에 넣으세요:
@@ -133,7 +133,7 @@ The script automatically matches the CSV column headers to your After Effects la
 ### 📥 ダウンロードとインストール
 
 #### 1. ダウンロード
-**[最新リリース (latest release)](https://github.com/sakugahoukai/csv2AE/releases/download/v1.0/csv2AE_Panel.jsx)**
+**[最新リリース (latest release)](https://github.com/sakugahoukai/csv2AE/releases/download/v1.1/csv2AE.jsx)**
 
 #### 2. インストール
 ダウンロードした `.jsx` ファイルをAfter Effectsの `ScriptUI Panels` フォルダに配置します。
