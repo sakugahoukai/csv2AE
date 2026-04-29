@@ -5,6 +5,8 @@
 
 > **A ScriptUI Panel for Adobe After Effects that automatically converts Clip Studio Paint CSV timesheets into Time Remap keyframes.**
 
+✅ **Tested and confirmed working on the latest macOS and the latest version of After Effects.**
+
 ---
 
 ## 🌏 Multi-language Guide
@@ -70,6 +72,8 @@ The script automatically matches the CSV column headers to your After Effects la
 
 > **클립스튜디오(Clip Studio Paint)의 CSV 타임시트를 애프터 이펙트(After Effects)의 타임리맵 키프레임으로 자동 변환해 주는 ScriptUI 패널입니다.**
 
+✅ **최신 macOS 및 최신 버전의 After Effects에서 정상 구동을 확인했습니다.**
+
 ### 📥 다운로드 및 설치
 
 #### 1. 다운로드
@@ -123,6 +127,8 @@ The script automatically matches the CSV column headers to your After Effects la
 ## 🇯🇵 日本語ガイド (Japanese)
 
 > **CLIP STUDIO PAINTのCSVタイムシートをAfter Effectsのタイムリマップキーフレームに自動変換するScriptUIパネルです。**
+
+✅ **最新のmacOSおよび最新バージョンのAfter Effectsでの正常動作を確認済みです。**
 
 ### 📥 ダウンロードとインストール
 
